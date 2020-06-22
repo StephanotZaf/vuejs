@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon app vue</title>
+</head>
+<style>
+    canvas {
+        width: 300px;
+        height: 200px;
+        border: 1px solid black;
+    }
+</style>
+<body>
+    <div id="mon-app">
+        <h1>Vue JS</h1>
+        <h2>Compteur : {{ compteur }}</h2>
+        <button v-on:click="augmente">Augmente</button>
+        <button v-on:click="diminue">Diminue</button>
+
+        <canvas v-on:mousemove="coords"></canvas>
+        <p>{{x}}/{{y}}</p>
+        <button v-on:click.once='foo'>Clique moi</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    new Vue({
+        el: '#mon-app',
+        data : {
+            compteur:0,
+            x:0,
+            y:0
+            },
+        methods: {
+            foo: function(){
+                console.log("Cliqué")
+            }, 
+            augmente: function(){
+                this.compteur++
+            },
+
+            diminue: function(){
+                this.compteur--
+            },
+
+            coords: function(e){
+                this.x = e.offsetX;
+                this.y = e.offsetY;
+                
+            }
+            }
+    })
+    </script>
+</body>
+</html>
